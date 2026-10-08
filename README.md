@@ -40,3 +40,6 @@ The project demonstrates a fundamental algorithmic problem and provides practice
 - Separate palindrome utility class
 - Unit tests
 - GUI version
+## Validation Notes
+
+The checker is intentionally small so the core palindrome logic stays easy to inspect and test. Useful edge cases include empty input, a single character, repeated characters, and values that are not palindromes.
