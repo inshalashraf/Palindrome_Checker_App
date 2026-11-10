@@ -1,45 +1,69 @@
 # Palindrome Checker App
 
-A small Java application for checking whether a string or number reads the same forward and backward.
+A small Java console application that checks whether a word, number, or phrase reads the same forward and backward.
 
 ## Features
 
-- Palindrome checking
-- Simple console-based interaction
-- Beginner-friendly Java implementation
-- Suitable for practicing strings, loops, and conditionals
+- Checks words, numbers, and phrases
+- Ignores letter case, spaces, and punctuation
+- Supports Unicode letters and digits
+- Handles empty and punctuation-only input with a clear message
+- Reusable palindrome logic separated from console input/output
+- Dependency-free edge-case tests
+- GitHub Actions CI using Java 17
 
 ## Tech Stack
 
-- Java
-- IntelliJ IDEA project structure
+- Java 17
+- String processing and two-pointer algorithm
+- Dependency-free Java test runner
+- GitHub Actions
 
 ## Project Structure
 
 ```text
 Palindrome_Checker_App/
 ├── App/
-│   └── src/
-│       └── ...
-├── .gitignore
-└── README.md
+│   ├── src/
+│   │   ├── Main.java
+│   │   └── PalindromeChecker.java
+│   └── test/
+│       └── PalindromeCheckerTest.java
+└── .github/workflows/java-tests.yml
 ```
 
 ## Run
 
-Open the `App` module in IntelliJ IDEA, or compile the Java source file containing the `main` method with `javac` and run it with `java`.
+From the repository root:
 
-## Learning Goal
+```bash
+mkdir -p build
+javac -d build App/src/*.java
+java -cp build Main
+```
 
-The project demonstrates a fundamental algorithmic problem and provides practice with input processing, string manipulation, and conditional logic.
+Enter a word or phrase when prompted. For example, `A man, a plan, a canal: Panama!` is treated as a palindrome.
 
-## Future Improvements
+## Run Tests
 
-- Ignore spaces and punctuation
-- Case-insensitive checking
-- Separate palindrome utility class
-- Unit tests
-- GUI version
-## Validation Notes
+```bash
+mkdir -p build
+javac -d build App/src/*.java App/test/*.java
+java -cp build PalindromeCheckerTest
+```
 
-The checker is intentionally small so the core palindrome logic stays easy to inspect and test. Useful edge cases include empty input, a single character, repeated characters, and values that are not palindromes.
+GitHub Actions compiles the application and runs the test suite on pushes and pull requests targeting `main`.
+
+## How It Works
+
+`PalindromeChecker.normalize()` removes characters other than Unicode letters and digits and converts the remaining text to lowercase. `isPalindrome()` then compares characters from the two ends, moving toward the centre. This takes linear time and uses linear space for normalization.
+
+## Edge Cases Covered
+
+- Empty and punctuation-only strings
+- Single characters
+- Mixed uppercase and lowercase
+- Spaces and punctuation
+- Numeric strings
+- Non-palindromic words and numbers
+- Null input validation
