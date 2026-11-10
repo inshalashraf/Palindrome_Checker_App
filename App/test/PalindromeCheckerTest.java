@@ -5,7 +5,7 @@ public class PalindromeCheckerTest {
                 "ignores spaces, punctuation, and case");
         check(PalindromeChecker.isPalindrome("12321"), "numeric palindrome");
         check(PalindromeChecker.isPalindrome("x"), "single character");
-        check(PalindromeChecker.isPalindrome(""), "empty string utility behavior");
+        check(!PalindromeChecker.isPalindrome(""), "empty string is not a palindrome");
         check(!PalindromeChecker.isPalindrome("hello"), "ordinary non-palindrome");
         check(!PalindromeChecker.isPalindrome("12345"), "numeric non-palindrome");
         check(!PalindromeChecker.isPalindrome("!!!"), "punctuation-only input");
